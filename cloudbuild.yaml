@@ -1,0 +1,26 @@
+# cloudbuild.yaml
+timeout: "1200s"  # allow up to 20 minutes for build+deploy
+
+steps:
+  # 1) Install dependencies
+  - name: "gcr.io/cloud-builders/npm"
+    args: ["ci"]
+
+  # 2) Build your app
+  - name: "gcr.io/cloud-builders/npm"
+    args: ["run", "build"]
+
+  # 3) Install the Firebase CLI
+  - name: "gcr.io/cloud-builders/npm"
+    args: ["install", "-g", "firebase-tools"]
+
+  # 4) Deploy to Firebase Hosting
+  - name: "gcr.io/cloud-builders/firebase"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        firebase deploy --only hosting --token "$FIREBASE_TOKEN"
+
+# No container images are built/pushed by Cloud Build
+images: []
