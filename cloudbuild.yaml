@@ -20,9 +20,7 @@ steps:
     args:
       - "-c"
       - |
-        cd firebase_seminar_app
         firebase deploy --only hosting --non-interactive
 
-images: []
 # No container images are built/pushed by Cloud Build
 images: []
