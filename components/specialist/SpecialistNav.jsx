@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { CalendarClock, Users, ClipboardList, Presentation, LogOut, Settings, UserCircle, Bell } from 'lucide-react';
+import { CalendarClock, Users, ClipboardList, Presentation, LogOut, Settings, UserCircle as ProfileIcon, Bell } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const SpecialistNav = () => {
@@ -25,6 +25,7 @@ const SpecialistNav = () => {
   ];
 
   const bottomNavItems = [
+    { name: 'My Profile', path: '/profile', icon: ProfileIcon },
     { name: 'Settings', path: '/specialist/settings', icon: Settings },
     { name: 'Logout', action: handleLogout, icon: LogOut },
   ];

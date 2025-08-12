@@ -23,10 +23,11 @@ const AdminNav = () => {
     { name: 'Reporting', path: '/admin/reports', icon: BarChart3 },
     { name: 'Parent Tours', path: '/admin/parent-tours', icon: CalendarCheck },
     { name: 'Data Management', path: '/admin/data-tools', icon: Database },
+    { name: 'Seminar Capacities', path: '/admin/seminar-capacities', icon: BarChart3 },
   ];
 
   const bottomNavItems = [
-    // { name: 'Profile', path: '/admin/profile', icon: ProfileIcon }, // Example
+    { name: 'My Profile', path: '/profile', icon: ProfileIcon },
     { name: 'Logout', action: handleLogout, icon: LogOut },
   ];
 

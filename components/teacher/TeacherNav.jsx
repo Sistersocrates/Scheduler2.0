@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { Home, BookOpen, PlusCircle, History, Users, Settings, LogOut, UserCircle as ProfileIcon } from 'lucide-react';
+import { Home, BookOpen, PlusCircle, History, Users, Settings, LogOut, UserCircle as ProfileIcon, Bus, DollarSign } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const TeacherNav = () => {
@@ -20,10 +20,14 @@ const TeacherNav = () => {
     { name: 'My Seminars', path: '/teacher/my-seminars', icon: BookOpen },
     { name: 'Add Seminar', path: '/teacher/add-seminar', icon: PlusCircle },
     { name: 'Attendance History', path: '/teacher/attendance-history', icon: History },
+    { name: 'Advisory', path: '/teacher/advisory', icon: Users },
+    { name: 'Transportation', path: '/teacher/transportation', icon: Bus },
+    { name: 'Funding', path: '/teacher/funding', icon: DollarSign },
     // { name: 'Class Rosters', path: '/teacher/rosters', icon: Users }, // Example if you add a general roster page
   ];
 
   const bottomNavItems = [
+    { name: 'My Profile', path: '/profile', icon: ProfileIcon },
     { name: 'Settings', path: '/teacher/settings', icon: Settings }, // Placeholder
     { name: 'Logout', action: handleLogout, icon: LogOut },
   ];

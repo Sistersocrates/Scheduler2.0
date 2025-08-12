@@ -25,6 +25,7 @@ const StudentNav = () => {
   ];
 
   const bottomNavItems = [
+    { name: 'My Profile', path: '/profile', icon: ProfileIcon },
     { name: 'Settings', path: '/student/settings', icon: Settings }, // Placeholder
     { name: 'Logout', action: handleLogout, icon: LogOut },
   ];

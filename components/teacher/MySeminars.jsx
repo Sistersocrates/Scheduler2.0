@@ -47,6 +47,31 @@ const MySeminars = () => {
     }
   };
 
+  const handleDelete = async (seminarId) => {
+    if (window.confirm("Are you sure you want to delete this seminar? This action cannot be undone.")) {
+      try {
+        const { error } = await supabase
+          .from('seminars')
+          .delete()
+          .eq('id', seminarId);
+
+        if (error) throw error;
+
+        toast({
+          title: "Success",
+          description: "Seminar deleted successfully.",
+        });
+        fetchMySeminars(); // Refresh the list
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to delete seminar. Please try again.",
+          variant: "destructive",
+        });
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <TeacherNav />
@@ -94,7 +119,7 @@ const MySeminars = () => {
                     </p>
                   </div>
 
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 mt-4">
                     <Button
                       onClick={() => navigate(`/teacher/roster/${seminar.id}`)}
                       className="flex-1"
@@ -107,6 +132,22 @@ const MySeminars = () => {
                       className="flex-1"
                     >
                       Attendance
+                    </Button>
+                  </div>
+                  <div className="flex gap-2 mt-2">
+                    <Button
+                      onClick={() => navigate(`/teacher/edit-seminar/${seminar.id}`)}
+                      variant="secondary"
+                      className="flex-1"
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      onClick={() => handleDelete(seminar.id)}
+                      variant="destructive"
+                      className="flex-1"
+                    >
+                      Delete
                     </Button>
                   </div>
                 </motion.div>

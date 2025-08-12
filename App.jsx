@@ -7,6 +7,7 @@ import TeacherDashboard from "@/pages/TeacherDashboard";
 import StudentDashboard from "@/pages/StudentDashboard";
 import SpecialistDashboard from "@/pages/SpecialistDashboard";
 import AdminDashboard from "@/pages/AdminDashboard";
+import Profile from "@/pages/Profile";
 
 import AddSeminar from "@/components/teacher/AddSeminar";
 import EditSeminar from "@/components/teacher/EditSeminar";
@@ -14,6 +15,9 @@ import AttendanceManager from "@/components/teacher/AttendanceManager";
 import ClassRoster from "@/components/teacher/ClassRoster";
 import AttendanceHistory from "@/components/teacher/AttendanceHistory";
 import MySeminars from "@/components/teacher/MySeminars";
+import Advisory from "@/components/teacher/Advisory";
+import TransportationRequest from "@/components/teacher/TransportationRequest";
+import FundingRequest from "@/components/teacher/FundingRequest";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/lib/supabase/client"; 
 
@@ -38,6 +42,7 @@ import AdminDashboardOverview from "@/components/admin/dashboard/AdminDashboardO
 import UserListView from "@/components/admin/users/UserListView";
 import TenantManagementView from "@/components/admin/tenants/TenantManagementView";
 import SystemSettingsView from "@/components/admin/settings/SystemSettingsView";
+import SeminarCapacityManager from "@/components/admin/tools/SeminarCapacityManager";
 // import IntegrationSettingsView from "@/components/admin/settings/IntegrationSettingsView"; // Replaced by layout
 import CreditTrackingReportView from "@/components/admin/reports/CreditTrackingReportView";
 import AttendanceReportView from "@/components/admin/reports/AttendanceReportView";
@@ -159,7 +164,8 @@ function App() {
         <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 font-sans">
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/auth/callback" element={<AuthCallback />} /> 
+            <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             
             <Route path="/teacher" element={<ProtectedRoute allowedRoles={['teacher']} />}>
               <Route element={<TeacherDashboard />}> 
@@ -170,6 +176,9 @@ function App() {
                 <Route path="attendance/:seminarId" element={<AttendanceManager />} />
                 <Route path="roster/:seminarId" element={<ClassRoster />} />
                 <Route path="attendance-history" element={<AttendanceHistory />} />
+                <Route path="advisory" element={<Advisory />} />
+                <Route path="transportation" element={<TransportationRequest />} />
+                <Route path="funding" element={<FundingRequest />} />
               </Route>
             </Route>
             
@@ -224,6 +233,7 @@ function App() {
                 <Route path="reports" element={<AdminReports />} />
                 <Route path="parent-tours" element={<ParentTourScheduler />} />
                 <Route path="data-tools" element={<AdminDataTools />} />
+                <Route path="seminar-capacities" element={<SeminarCapacityManager />} />
               </Route>
             </Route>
             
