@@ -15,13 +15,16 @@ steps:
   - name: "gcr.io/cloud-builders/npm"
     args: ["install", "-g", "firebase-tools"]
 
-  # 4) Deploy to Firebase Hosting
-  - name: "gcr.io/cloud-builders/firebase"
-    entrypoint: "bash"
-    args:
-      - "-c"
-      - |
-        firebase deploy --only hosting --token "$FIREBASE_TOKEN"
+   # 4) Deploy to Firebase Hosting
+-  - name: "gcr.io/cloud-builders/firebase"
++  - name: "gcr.io/cloud-builders/firebase"
+     entrypoint: "bash"
+     args:
+       - "-c"
+       - |
+-        firebase deploy --only hosting --token "$FIREBASE_TOKEN"
++        cd firebase_seminar_app
++        firebase deploy --only hosting --non-interactive
 
 # No container images are built/pushed by Cloud Build
 images: []
