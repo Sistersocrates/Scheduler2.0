@@ -1,28 +1,29 @@
-# cloudbuild.yaml
-# cloudbuild.yaml
+# cloudbuild.yaml  
 timeout: "1200s"
 
 options:
   logging: CLOUD_LOGGING_ONLY
 
 steps:
+  # 1) Install dependencies (using npm install since no package-lock.json)
   - name: "gcr.io/cloud-builders/npm"
-    args: ["ci"]
+    args: ["install"]
 
+  # 2) Build your app (Next.js/Vite/etc.)
   - name: "gcr.io/cloud-builders/npm"
     args: ["run", "build"]
 
+  # 3) Install the Firebase CLI
   - name: "gcr.io/cloud-builders/npm"
     args: ["install", "-g", "firebase-tools"]
 
+  # 4) Deploy to Firebase Hosting (uses service account, no token)
   - name: "gcr.io/cloud-builders/firebase"
     entrypoint: "bash"
     args:
       - "-c"
       - |
-        cd firebase_seminar_app
         firebase deploy --only hosting --non-interactive
 
-images: []
-# No container images are built/pushed by Cloud Build
+# We’re not building or pushing any container images
 images: []
