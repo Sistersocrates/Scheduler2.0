@@ -191,10 +191,12 @@ export default defineConfig({
 		},
 		allowedHosts: true,
 	},
-	resolve: {
-		extensions: ['.jsx', '.js', '.tsx', '.ts', '.json', ],
-		alias: {
-			'@': path.resolve(__dirname, './src'),
-		},
+	  resolve: {
+		      extensions: ['.jsx', '.js', '.tsx', '.ts', '.json'],
+		      alias: {
+				        '@': path.resolve(__dirname, './src'),
+				        '@pages': path.resolve(__dirname, './pages'),
+			  },
+	  },
 	},
 });
