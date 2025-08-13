@@ -126,11 +126,11 @@ const AttendanceManager = () => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span
                           className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                            record.status === "Full credit"
+                            record.status === "Present"
                               ? "bg-green-100 text-green-800"
                               : record.status === "Absent"
                               ? "bg-red-100 text-red-800"
-                              : record.status === "Partial credit"
+                              : record.status === "Tardy"
                               ? "bg-yellow-100 text-yellow-800"
                               : "bg-blue-100 text-blue-800"
                           }`}
@@ -142,24 +142,10 @@ const AttendanceManager = () => {
                         <div className="flex space-x-2">
                           <Button
                             size="sm"
-                            onClick={() => handleStatusChange(record.id, "Full credit")}
-                            variant={record.status === "Full credit" ? "default" : "outline"}
+                            onClick={() => handleStatusChange(record.id, "Present")}
+                            variant={record.status === "Present" ? "default" : "outline"}
                           >
-                            Full credit
-                          </Button>
-                          <Button
-                            size="sm"
-                            onClick={() => handleStatusChange(record.id, "Partial credit")}
-                            variant={record.status === "Partial credit" ? "default" : "outline"}
-                          >
-                            Partial credit
-                          </Button>
-                          <Button
-                            size="sm"
-                            onClick={() => handleStatusChange(record.id, "No credit")}
-                            variant={record.status === "No credit" ? "default" : "outline"}
-                          >
-                            No credit
+                            Present
                           </Button>
                           <Button
                             size="sm"
@@ -167,6 +153,26 @@ const AttendanceManager = () => {
                             variant={record.status === "Absent" ? "default" : "outline"}
                           >
                             Absent
+                          </Button>
+                          <Button
+                            size="sm"
+                            onClick={() => handleStatusChange(record.id, "Tardy")}
+                            variant={record.status === "Tardy" ? "default" : "outline"}
+                          >
+                            Tardy
+                          </Button>
+                          <Button
+                            size="sm"
+                            onClick={() =>
+                              handleStatusChange(record.id, "Partial Participation")
+                            }
+                            variant={
+                              record.status === "Partial Participation"
+                                ? "default"
+                                : "outline"
+                            }
+                          >
+                            Partial
                           </Button>
                         </div>
                       </td>
